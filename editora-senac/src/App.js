@@ -48,9 +48,7 @@ class App extends Component {
 
             <Route exact path="/frontend" element={<Frontend livros={this.state.livros} />} />
             <Route exact path="/programacao" element={<Programacao livros={this.state.livros} />} />
-            <Route exact path="/design" element={<Design livros={this.state.livros} />} />
-            //teste
-                        
+            <Route exact path="/design" element={<Design livros={this.state.livros} />} />   
             <Route exact path="/catalogo" element={<Catalogo livros={this.state.livros} />} />
             <Route path="/livro/:livroSlug" render={props => {
               const livro = this.state.livros.find(
