@@ -29,6 +29,13 @@ class App extends Component {
     ],
   };
 
+  inserirLivro = livro => {
+    livro.id = this.state.livros.length + 1;
+    this.setState({
+      livros: [...this.state.livros, livro]
+    });
+  };
+
   render() {
     return (
       <Router>
@@ -41,7 +48,11 @@ class App extends Component {
           <Route
             exact
             path="/cadastrar"
-            element={<CadastrarLivros livros={this.state.livros} />} />
+            element={
+              <CadastrarLivros
+                inserirLivro={this.inserirLivro}
+                livro={{ id: 0, isbn: "", autor: "", titulo: "" }} />
+            } />
           <Route path="*" element={< NotFound />} />
         </Routes>
       </Router>
