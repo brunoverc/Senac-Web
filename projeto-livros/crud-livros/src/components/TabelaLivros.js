@@ -1,6 +1,6 @@
 import React from "react";
 
-const TabelaLivros = ({ livros }) => {
+const TabelaLivros = ({ livros, removerLivro }) => {
     return (
         <div className="livros">
             <h1>Tabela de livros</h1>
@@ -26,7 +26,10 @@ const TabelaLivros = ({ livros }) => {
                                     <button className="botao editar">Editar</button>
                                 </td>
                                 <td>
-                                    <button className="botao remover">Remover</button>
+                                    <button className="botao remover"
+                                        onClick={() => { removerLivro(livro) }}>
+                                        Remover
+                                    </button>
                                 </td>
                             </tr>
                         ))}

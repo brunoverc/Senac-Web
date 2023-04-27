@@ -36,6 +36,13 @@ class App extends Component {
     });
   };
 
+  removerLivro = livro => {
+    if (window.confirm("Remover esse livro?")) {
+      const livros = this.state.livros.filter(p => p.isbn !== livro.isbn);
+      this.setState({ livros })
+    }
+  }
+
   render() {
     return (
       <Router>
@@ -44,7 +51,12 @@ class App extends Component {
           <Route
             exact
             path="/"
-            element={<TabelaLivros livros={this.state.livros} />} />
+            element={
+              <TabelaLivros
+                livros={this.state.livros}
+                removerLivro={this.removerLivro}
+              />
+            } />
           <Route
             exact
             path="/cadastrar"
