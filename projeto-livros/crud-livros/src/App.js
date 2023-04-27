@@ -7,26 +7,7 @@ import NotFound from "./components/NotFound";
 
 class App extends Component {
   state = {
-    livros: [
-      {
-        id: 1,
-        isbn: "978-85-7522-403-8",
-        titulo: "HTML5 - 2ª Edição",
-        autor: "Maurício Samy Silva",
-      },
-      {
-        id: 2,
-        isbn: "978-85-7522-807-4",
-        titulo: "Introdução ao Pentest",
-        autor: "Daniel Moreno",
-      },
-      {
-        id: 3,
-        isbn: "978-85-7522-780-8",
-        titulo: "Internet das Coisas para Desenvolvedores",
-        autor: "Ricardo da Silva Ogliari",
-      },
-    ],
+    livros: JSON.parse(localStorage.getItem("livros")),
   };
 
   inserirLivro = livro => {
@@ -34,12 +15,17 @@ class App extends Component {
     this.setState({
       livros: [...this.state.livros, livro]
     });
+
+    console.log([...this.state.livros, livro]);
+    localStorage.setItem("livros", JSON.stringify([...this.state.livros, livro]));
   };
 
   removerLivro = livro => {
     if (window.confirm("Remover esse livro?")) {
       const livros = this.state.livros.filter(p => p.isbn !== livro.isbn);
       this.setState({ livros })
+
+      localStorage.setItem("livros", JSON.stringify(livros));
     }
   }
 
