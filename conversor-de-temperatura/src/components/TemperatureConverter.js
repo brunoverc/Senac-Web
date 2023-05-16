@@ -32,6 +32,68 @@ const TemperatureConverter = () => {
     temperature = temperature.slice(0, -1);
     setTemperature(temperature);
   }
+
+  const handleConverter = () => {
+    const resultCelsius = document.querySelector("#celsius-temp");
+    const resultFahrenheit = document.querySelector("#fahrenheit-temp");
+    const resultKelvin = document.querySelector("#kelvin-temp");
+
+    const fromTemp = document.querySelector("#user-choice").options[document.querySelector("#user-choice").selectedIndex].value;
+    console.log(fromTemp);
+    //Forçamos a conversão da string para número
+    temperature = Number(temperature);
+
+    resultCelsius.textContent = "";
+    resultFahrenheit.textContent = "";
+    resultKelvin.textContent = "";
+
+    if(fromTemp === "C")
+    {
+      //Arredondamos o número de casas decimais das temperaturas
+      const celsiusTemperature = temperature.toFixed(2);
+      //Cálculo da temperatura em graus Fahrenheit
+      const fahrenheitTemperature = ((temperature * 9) / 5 + 32).toFixed(2);
+      const kelvinTemperature = (temperature + 273.15).toFixed(2);
+
+      console.log(celsiusTemperature);
+      console.log(fahrenheitTemperature);
+      console.log(kelvinTemperature);
+
+      resultCelsius.insertAdjacentHTML("afterbegin", celsiusTemperature);
+      resultFahrenheit.insertAdjacentHTML("afterbegin", fahrenheitTemperature);
+      resultKelvin.insertAdjacentHTML("afterbegin", kelvinTemperature);
+    }
+    if(fromTemp === "F")
+    {
+      const fahrenheitTemperature = temperature.toFixed(2);
+      const celsiusTemperature = ((temperature - 32) * 5 / 9).toFixed(2);
+      const kelvinTemperature = ((temperature - 32) * 5 / 9 + 273.15).toFixed(2);
+
+      console.log(celsiusTemperature);
+      console.log(fahrenheitTemperature);
+      console.log(kelvinTemperature);
+
+      resultCelsius.insertAdjacentHTML("afterbegin", celsiusTemperature);
+      resultFahrenheit.insertAdjacentHTML("afterbegin", fahrenheitTemperature);
+      resultKelvin.insertAdjacentHTML("afterbegin", kelvinTemperature);
+    }
+    if(fromTemp === "K")
+    {
+      const kelvinTemperature = temperature.toFixed(2);
+      const celsiusTemperature = (temperature - 273.15).toFixed(2);
+      const fahrenheitTemperature = ((temperature - 273.15) * 9 / 5 + 32).toFixed(2);
+
+      console.log(celsiusTemperature);
+      console.log(fahrenheitTemperature);
+      console.log(kelvinTemperature);
+
+      resultCelsius.insertAdjacentHTML("afterbegin", celsiusTemperature);
+      resultFahrenheit.insertAdjacentHTML("afterbegin", fahrenheitTemperature);
+      resultKelvin.insertAdjacentHTML("afterbegin", kelvinTemperature);
+    }
+    
+  }
+
   return (
     <>
       <aside className="areaResultado">
@@ -59,7 +121,7 @@ const TemperatureConverter = () => {
         <span>
           <sup>o</sup>K
         </span>
-        <button className="tecla" id="converter">
+        <button className="tecla" id="converter" onClick={() => handleConverter()}>
           Converter
         </button>
       </aside>
